@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.8-SNAPSHOT'
+	id 'fabric-loom' version '0.10-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -20,12 +20,6 @@ repositories {
 		url = 'https://jitpack.io'
 	}
 	maven {
-		url = 'https://maven.cafeteria.dev/releases'
-		content {
-			includeGroup 'net.adriantodt.fabricmc'
-		}
-	}
-	maven {
 		url "https://maven.shedaniel.me/"
 	}
 	maven {
@@ -35,7 +29,7 @@ repositories {
 }
 
 loom {
-	accessWidener = file("src/main/resources/apoli.accesswidener")
+	accessWidenerPath = file("src/main/resources/apoli.accesswidener")
 }
 
 dependencies {
@@ -46,9 +40,6 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	modImplementation "net.adriantodt.fabricmc:fallflyinglib:${project.ffl_version}"
-	include "net.adriantodt.fabricmc:fallflyinglib:${project.ffl_version}"
 
 	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cca_version}"
 	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${project.cca_version}"
