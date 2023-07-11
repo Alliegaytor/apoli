@@ -49,7 +49,7 @@
   "accessWidener": "apoli.accesswidener",
 
   "depends": {
-    "java": ">=16",
+    "java": ">=17",
     "fabricloader": ">=0.11.3",
     "fabric": "*",
     "minecraft": "1.17.x",
