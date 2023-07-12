@@ -26,12 +26,10 @@ import io.github.ladysnake.pal.Pal;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.command.argument.ArgumentTypes;
 import net.minecraft.command.argument.serialize.ConstantArgumentSerializer;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.resource.ResourceType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -60,20 +58,20 @@ public class Apoli implements ModInitializer, EntityComponentInitializer {
 
 		ServerLifecycleEvents.SERVER_STARTED.register(s -> server = s);
 
-//		FabricLoader.getInstance().getModContainer(MODID).ifPresent(modContainer -> {
-//			VERSION = modContainer.getMetadata().getVersion().getFriendlyString();
-//			if(VERSION.contains("+")) {
-//				VERSION = VERSION.split("\\+")[0];
-//			}
-//			if(VERSION.contains("-")) {
-//				VERSION = VERSION.split("-")[0];
-//			}
-//			String[] splitVersion = VERSION.split("\\.");
-//			SEMVER = new int[splitVersion.length];
-//			for(int i = 0; i < SEMVER.length; i++) {
-//				SEMVER[i] = Integer.parseInt(splitVersion[i]);
-//			}
-//		});
+		FabricLoader.getInstance().getModContainer(MODID).ifPresent(modContainer -> {
+			VERSION = modContainer.getMetadata().getVersion().getFriendlyString();
+			if(VERSION.contains("+")) {
+				VERSION = VERSION.split("\\+")[0];
+			}
+			if(VERSION.contains("-")) {
+				VERSION = VERSION.split("-")[0];
+			}
+			String[] splitVersion = VERSION.split("\\.");
+			SEMVER = new int[splitVersion.length];
+			for(int i = 0; i < SEMVER.length; i++) {
+				SEMVER[i] = Integer.parseInt(splitVersion[i]);
+			}
+		});
 
 		ModPacketsC2S.register();
 
