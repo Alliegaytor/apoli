@@ -5,7 +5,6 @@ import io.github.apace100.apoli.power.PhasingPower;
 import io.github.apace100.apoli.power.PreventBlockSelectionPower;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -36,7 +35,7 @@ public abstract class AbstractBlockStateMixin {
     @Inject(method = "getOutlineShape(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/ShapeContext;)Lnet/minecraft/util/shape/VoxelShape;", at = @At("HEAD"), cancellable = true)
     private void preventBlockSelection(BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
         if(context instanceof EntityShapeContext) {
-            if(((EntityShapeContext)context).getEntity().isPresent()) {
+            if(((EntityShapeContext) context).getEntity().isPresent()) {
                 Entity entity = ((EntityShapeContext)context).getEntity().get();
                 if(PowerHolderComponent.getPowers(entity, PreventBlockSelectionPower.class).stream().anyMatch(p -> p.doesPrevent(entity.world, pos))) {
                     cir.setReturnValue(VoxelShapes.empty());

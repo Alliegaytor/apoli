@@ -76,8 +76,8 @@ public class ModifyPlayerSpawnPower extends Power {
     public Pair<ServerWorld, BlockPos> getSpawn(boolean isSpawnObstructed) {
         if(entity instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
-            ServerWorld world = serverPlayer.getServerWorld().getServer().getWorld(dimension);
-            BlockPos regularSpawn = serverPlayer.getServerWorld().getServer().getWorld(World.OVERWORLD).getSpawnPos();
+            ServerWorld world = serverPlayer.getServer().getWorld(dimension);
+            BlockPos regularSpawn = serverPlayer.getServer().getWorld(World.OVERWORLD).getSpawnPos();
             BlockPos spawnToDimPos;
             int iterations = (world.getLogicalHeight() / 2) - 8;
             int center = world.getLogicalHeight() / 2;
